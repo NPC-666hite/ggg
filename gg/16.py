@@ -34,6 +34,8 @@ def game():
     coin.image = pygame.image.load('coin.png')
     coin.rect = coin.image.get_rect()
     set_coin_pos(alien, coin)
+    sound = pygame.mixer.Sound('kill.mp3')
+    sound = pygame.mixer.Sound('kill.mp3')
     alien_speed = 5
     run = True
     time_clock = pygame.time.get_ticks()
@@ -73,6 +75,7 @@ def game():
         if pygame.sprite.collide_mask(alien, coin):
             set_coin_pos(alien, coin)
             score += 1
+            sound.play()
             prochnost -= 1
             if prochnost == 0:
                 screen.blit(t, (0, 0))
@@ -91,6 +94,7 @@ def game():
         for meteor in meteorites:
             meteor.rect.y += 5
             if pygame.sprite.collide_mask(alien, meteor):
+                sound.play()
                 game_over = True
                 time.sleep(2)
     
